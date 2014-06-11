@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>ДНР Краматорск</title>
+    <link rel="StyleSheet" href="{{ STATIC_URL }}css/base.css" type="text/css">
+  </head>
+  <body>
+    <div id="app">
+      <header>
+        <div id="title">
+          {% if user.is_authenticated %}
+            {{ user.get_full_name }}<a style="display: inline-block; float: right;" href="/logout/">Выход</a>
+          {% endif %}
+        </div>
+        <nav>
+          {% block breadcrumbs %}{% endblock breadcrumbs %}
+        </nav>
+      </header>
+      <div id="main">{% block content %}{% endblock content %}</div>
+      <div id="wrap">&nbsp;</div>
+    </div>
+    <footer>
+      Copyright 2014. ДНР.
+    </footer>
+  </body>
+</html>

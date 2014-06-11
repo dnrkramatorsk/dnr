@@ -1,0 +1,36 @@
+{% extends "base.html" %}
+
+{% block breadcrumbs %}
+<ul class="breadcrumbs">
+  <li><a href="/">Главная</a></li>
+  <li>Регистрация обращений</li>
+</ul>
+{% endblock breadcrumbs %}
+
+{% block content %}
+<div>
+    <h1>Регистрация обращения</h1>
+    <h3 id="message">{{ message }}</h3>
+    <form action="/callcenter/" method="POST">{% csrf_token %}
+        <table border="0" width="100%">
+            <tbody>
+                <tr><td align="right" width="50%">{{ form.phone.label_tag }}&nbsp;&nbsp;&nbsp;</td><td align="left">{{ form.phone }}</td></tr>
+                <tr><td align="right" width="50%">{{ form.author.label_tag }}&nbsp;&nbsp;&nbsp;</td><td align="left">{{ form.author }}</td></tr>
+                <tr><td align="right" width="50%">{{ form.title.label_tag }}&nbsp;&nbsp;&nbsp;</td><td align="left">{{ form.title }}</td></tr>
+                <tr><td align="right" width="50%">{{ form.message.label_tag }}&nbsp;&nbsp;&nbsp;</td><td align="left">{{ form.message }}</td></tr>
+            <tbody>
+        </table>
+        <input type="submit" value="Зарегистрировать">
+    </form>
+</div>
+<script>
+    var d = document;
+    function document_loaded() {
+        setTimeout(function() {
+            var slideSource = document.getElementById('message');
+            slideSource.className = slideSource.className ? '' : 'fade';
+        }, 3000);
+    }
+    d.addEventListener("DOMContentLoaded", document_loaded, false);
+</script>
+{% endblock content %}
